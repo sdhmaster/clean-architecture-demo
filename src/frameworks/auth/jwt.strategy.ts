@@ -1,11 +1,12 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { UsersRepository } from '../apis/subscriptions/modules/users/users.repository';
+import { UserUseCase } from 'src/use-cases/user/user.use-case';
+//import { UsersRepository } from '../apis/subscriptions/modules/users/users.repository';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(private usersRepository: UsersRepository) {
+  constructor(private userUseCase: UserUseCase) {
     super({
       jwtFromRequest: ExtractJwt.fromHeader('authorization'),
       ignoreExpiration: false,
@@ -15,7 +16,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   async validate(payload: any) {
     try {
-      const user = await this.usersRepository.findUserById(payload.userId);
+      const user = await this.userUseCase.getUser(payload.userId);
       return user;
     } catch (err) {
       throw new HttpException(`${err}`, HttpStatus.FORBIDDEN);

@@ -6,12 +6,12 @@ export const databaseProviders = [
     useFactory: async () => {
       const dataSource = new DataSource({
         type: 'mysql',
-        host: 'localhost',
+        host: 'sooldamhwa-staging.cfha30nsqajt.ap-northeast-2.rds.amazonaws.com',
         port: 3306,
-        username: 'root',
-        password: 'root',
-        database: 'test',
-        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+        username: 'sooldamhwa',
+        password: '5001Damhwa313!!',
+        database: 'sooldamhwa',
+        entities: ['/../**/*.entity{.ts,.js}'],
         synchronize: true,
       });
 

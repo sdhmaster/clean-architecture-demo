@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
-import { UsersRepository } from '../apis/subscriptions/modules/users/users.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from '../apis/subscriptions/entites/user.entity';
+import { UserModel } from '../model/user.model';
+import { UserUseCase } from 'src/use-cases/user/user.use-case';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserEntity]), PassportModule],
-  providers: [JwtStrategy, UsersRepository],
+  imports: [TypeOrmModule.forFeature([UserModel]), PassportModule],
+  providers: [JwtStrategy, UserUseCase],
 })
 export class AuthModule {}

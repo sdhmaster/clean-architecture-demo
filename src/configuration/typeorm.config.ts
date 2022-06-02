@@ -1,11 +1,11 @@
-export const DATABASE :{
-    type: 'mysql',
-    host: process.env.DB_HOST,
-    port: 3306,
-    username: process.env.DB_USER_NAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    entities: [__dirname + '/**/*.entity{.ts,.js}'],
-    synchronize: JSON.parse(process.env.DB_SYNCHRONIZE),
-    logging: true,
-  }
+export const DATABASE = {
+  type: 'mysql',
+  host: 'sooldamhwa-staging.cfha30nsqajt.ap-northeast-2.rds.amazonaws.com',
+  port: 3306,
+  username: 'sooldamhwa',
+  password: '5001Damhwa313!!',
+  database: 'sooldamhwa',
+  entities: ['/../**/*.entity{.ts,.js}'],
+  synchronize: false,
+  logging: true,
+};
